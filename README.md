@@ -1,278 +1,243 @@
-# Bookstore Project API
+# 📚 Bookstore Project API
 
-A simple Node.js and Express API for managing bookstore records with MongoDB. This project lets you add books, fetch all books, search by book name, paginate results, and validate incoming request data before saving to the database.
+A simple **Node.js + Express API** for managing bookstore records using MongoDB. This project allows you to add books, fetch all books, search by name, apply pagination, and validate request data before saving.
 
-## Overview
+---
 
-This project is a backend API built with:
+## 📌 Overview
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- express-validator
-- Nodemon
+This backend API is built using:
 
-The application uses ES modules, connects to a local MongoDB server, defines a `books` collection through Mongoose, and exposes a small set of API routes for reading and creating book data.
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* express-validator
+* Nodemon
 
-## Features Used In This Project
+The application uses **ES Modules**, connects to a local MongoDB server, defines a `books` collection, and provides REST APIs for managing book data.
 
-- Express server setup
-- JSON body parsing with `express.json()`
-- MongoDB connection using Mongoose
-- Book schema and model using Mongoose
-- Create book API
-- Get all books API
-- Search API using query parameters
-- Pagination using `page` and `limit`
-- Sorting results by book name
-- Input validation using `express-validator`
-- Schema-level validation using Mongoose
-- Development server with `nodemon`
-- ES module syntax with `"type": "module"`
+---
 
-## Tech Stack
+## ✨ Features
 
-| Technology | Purpose |
-| --- | --- |
-| Node.js | JavaScript runtime |
-| Express | API server and routing |
-| MongoDB | Database |
-| Mongoose | MongoDB ODM and schema modeling |
-| express-validator | Request validation |
-| Nodemon | Auto-restart during development |
+* Express server setup
+* JSON body parsing (`express.json()`)
+* MongoDB connection using Mongoose
+* Book schema and model
+* Add book API
+* Fetch all books API
+* Search books by name
+* Pagination (`page`, `limit`)
+* Sorting by book name
+* Request validation (`express-validator`)
+* Schema validation (Mongoose)
+* Development with Nodemon
+* ES module support
 
-## Project Structure
+---
+
+## 🛠 Tech Stack
+
+| Technology        | Purpose                 |
+| ----------------- | ----------------------- |
+| Node.js           | Runtime environment     |
+| Express.js        | API & routing           |
+| MongoDB           | Database                |
+| Mongoose          | ODM for MongoDB         |
+| express-validator | Input validation        |
+| Nodemon           | Auto-restart dev server |
+
+---
+
+## 📁 Project Structure
 
 ```text
-bookstore project-api/
-|-- configs/
-|   |-- database.js
-|-- middlewares/
-|   |-- validation.js
-|-- models/
-|   |-- bookModel.js
-|-- index.js
-|-- package.json
-|-- package-lock.json
-|-- .gitignore
-`-- README.md
+bookstore-project-api/
+│
+├── configs/
+│   └── database.js
+│
+├── middlewares/
+│   └── validation.js
+│
+├── models/
+│   └── bookModel.js
+│
+├── index.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
 ```
 
-## How The Project Works
+---
 
-1. `index.js` starts the Express server on port `3200`.
-2. `configs/database.js` connects the app to local MongoDB.
-3. `express.json()` allows the server to read JSON request bodies.
-4. `models/bookModel.js` defines the book schema and creates the `books` model.
-5. `middlewares/validation.js` contains validation rules for incoming book data.
-6. `POST /add` runs validation and saves valid books into MongoDB.
-7. `GET /` returns all books from the collection.
-8. `GET /api` supports searching, pagination, and sorting.
+## ⚙️ How It Works
 
-## Installation And Setup
+1. `index.js` starts the server on **port 3200**
+2. `configs/database.js` connects to MongoDB
+3. `express.json()` parses request bodies
+4. `bookModel.js` defines schema
+5. `validation.js` handles input validation
+6. `POST /add` → validates & saves book
+7. `GET /` → returns all books
+8. `GET /api` → search + pagination + sorting
+
+---
+
+## 🚀 Installation & Setup
 
 ### Prerequisites
 
-Make sure these are installed on your system:
+Make sure you have installed:
 
-- Node.js
-- npm
-- MongoDB Community Server or any running local MongoDB instance
+* Node.js
+* npm
+* MongoDB (local or running instance)
 
-### Steps To Run The Project
+---
 
-1. Open the project folder in terminal.
-2. Install dependencies:
+### Steps to Run
 
 ```bash
 npm install
 ```
 
-3. Make sure MongoDB is running on:
+Start MongoDB at:
 
-```text
+```bash
 mongodb://localhost:27017/
 ```
 
-4. Start the development server:
+Run the project:
 
 ```bash
 npm run dev
 ```
 
-5. Or start the project normally:
+OR
 
 ```bash
 npm start
 ```
 
-6. Open:
+Open in browser:
 
 ```text
 http://localhost:3200
 ```
 
-## Available Scripts
+---
 
-| Command | Description |
-| --- | --- |
-| `npm start` | Runs the project with Node.js |
-| `npm run dev` | Runs the project with Nodemon |
-| `npm test` | Placeholder script, not implemented yet |
+## 📜 Available Scripts
 
-## Database Configuration
+| Command     | Description         |
+| ----------- | ------------------- |
+| npm start   | Run using Node      |
+| npm run dev | Run using Nodemon   |
+| npm test    | Not implemented yet |
 
-The MongoDB connection is defined in `configs/database.js`.
+---
 
-Current connection string:
+## 🗄 Database Configuration
+
+Located in:
+
+```js
+configs/database.js
+```
+
+Default connection:
 
 ```js
 await mongoose.connect('mongodb://localhost:27017/');
 ```
 
-This means the project currently expects a local MongoDB server. If you want to use a specific database name, you can update the connection string to something like:
+Recommended:
 
 ```js
 await mongoose.connect('mongodb://localhost:27017/bookstore');
 ```
 
-## Data Model
+---
 
-The book schema is defined in `models/bookModel.js`.
+## 📚 Data Model
 
-### Book Fields
+### Book Schema Fields
 
-| Field | Type | Required | Extra Rules |
-| --- | --- | --- | --- |
-| `bookname` | String | Yes | `trim: true` |
-| `author` | String | Yes | `trim: true` |
-| `price` | Number | Yes | `min: 1` |
-| `pages` | Number | Yes | `min: 1` |
+| Field    | Type   | Required | Rules  |
+| -------- | ------ | -------- | ------ |
+| bookname | String | Yes      | trim   |
+| author   | String | Yes      | trim   |
+| price    | Number | Yes      | min: 1 |
+| pages    | Number | Yes      | min: 1 |
 
-### Schema Definition Summary
+---
 
-- `bookname` must be a string and cannot be missing.
-- `author` must be a string and cannot be missing.
-- `price` must be a number and must be at least `1`.
-- `pages` must be a number and must be at least `1`.
+## ✅ Validation
 
-## Validation Used
+Using **express-validator**
 
-This project uses `express-validator` in `middlewares/validation.js` for request-level validation.
+### Rules:
 
-### Request Validation Rules
+* bookname → required
+* author → required
+* price → required
+* pages → required
 
-- `bookname` cannot be empty
-- `author` cannot be empty
-- `price` cannot be empty
-- `pages` cannot be empty
+### Error Messages:
 
-Validation messages used in the project:
+* Please Enter Book Name
+* Please Enter Author Name
+* Please Enter Price
+* Please Enter Pages
 
-- `Please Enter Book Name`
-- `Please Enter Author Name`
-- `Please Enter Price`
-- `Please Enter pages`
+---
 
-### Validation Flow
+## 🔌 API Endpoints
 
-- Validation rules are attached to the `POST /add` route through the `validation` middleware.
-- Inside `index.js`, `validationResult(req)` is used to collect validation errors.
-- If errors exist, the API returns `errors: errors.array()`.
-- If there are no errors, the book is created in MongoDB.
+---
 
-### Important Note
-
-The request validator checks whether fields are empty. Numeric rules such as minimum value are enforced by the Mongoose schema when the document is saved.
-
-## API Endpoints
-
-### 1. Get All Books
-
-**Route**
+### 1️⃣ Get All Books
 
 ```http
 GET /
 ```
 
-**Description**
+Returns all books.
 
-Returns all books from the MongoDB collection.
+---
 
-**Example Response**
-
-```json
-[
-  {
-    "_id": "67e5abcd1234567890abcd12",
-    "bookname": "Atomic Habits",
-    "author": "James Clear",
-    "price": 499,
-    "pages": 320,
-    "__v": 0
-  }
-]
-```
-
-## 2. Search, Pagination, And Sorting API
-
-**Route**
+### 2️⃣ Search + Pagination + Sorting
 
 ```http
 GET /api
 ```
 
-**Query Parameters**
+#### Query Params
 
-| Parameter | Default | Description |
-| --- | --- | --- |
-| `search` | `''` | Searches `bookname` using regex |
-| `page` | `1` | Current page number |
-| `limit` | `5` | Number of records per page |
+| Param  | Default | Description        |
+| ------ | ------- | ------------------ |
+| search | ''      | Search by bookname |
+| page   | 1       | Page number        |
+| limit  | 5       | Records per page   |
 
-**How It Works**
-
-- Searches only by `bookname`
-- Uses case-insensitive regex with `$options: 'i'`
-- Uses `skip = (page - 1) * limit`
-- Uses `.limit(limit)` for pagination
-- Uses `.sort({ bookname: 1 })` for ascending alphabetical order
-
-**Example Request**
+#### Example
 
 ```http
 GET /api?search=harry&page=1&limit=5
 ```
 
-**Example Response**
+---
 
-```json
-[
-  {
-    "_id": "67e5abcd1234567890abcd34",
-    "bookname": "Harry Potter and the Philosopher's Stone",
-    "author": "J.K. Rowling",
-    "price": 699,
-    "pages": 350,
-    "__v": 0
-  }
-]
-```
-
-## 3. Add A New Book
-
-**Route**
+### 3️⃣ Add Book
 
 ```http
 POST /add
 ```
 
-**Description**
-
-Adds a new book after validation.
-
-**Request Body**
+#### Request Body
 
 ```json
 {
@@ -283,7 +248,9 @@ Adds a new book after validation.
 }
 ```
 
-### Success Response
+---
+
+### ✅ Success Response
 
 ```json
 {
@@ -299,9 +266,9 @@ Adds a new book after validation.
 }
 ```
 
-### Validation Error Response
+---
 
-When validation fails, the route returns `errors: errors.array()`. A simplified example is shown below:
+### ❌ Validation Error
 
 ```json
 {
@@ -315,86 +282,62 @@ When validation fails, the route returns `errors: errors.array()`. A simplified 
 }
 ```
 
-Depending on the request body, multiple error objects may be returned in the `errors` array. The real response may also include extra fields from `express-validator`, such as `value` or `type`.
+---
 
-## Example API Testing
+## 🧪 Testing (Postman)
 
-### Using Postman
+* Method: POST
+* URL: `http://localhost:3200/add`
+* Body: raw JSON
 
-- Method: `POST`
-- URL: `http://localhost:3200/add`
-- Body type: `raw`
-- Format: `JSON`
+---
 
-### Example Invalid Request
+## 📊 Current Behavior
 
-```json
-{
-  "bookname": "",
-  "author": "",
-  "price": "",
-  "pages": ""
-}
-```
+* Fetch all books
+* Search books
+* Pagination enabled
+* Sorting by bookname
+* Validation applied
 
-### Expected Validation Result
+---
 
-You should receive validation error objects for all empty fields.
+## ⚠️ Limitations
 
-## Current Behavior Summary
+* No update API
+* No delete API
+* No single book API
+* No `.env` support
+* Hardcoded DB URI
+* No global error handler
 
-- `GET /` returns all books
-- `GET /api` returns filtered and paginated books
-- `POST /add` validates request body and creates a book
-- Book search is based only on `bookname`
-- Sorting is ascending by `bookname`
-- Validation errors are returned from `validationResult(req)`
+---
 
-## Current Limitations
+## 🚀 Future Improvements
 
-- No update API yet
-- No delete API yet
-- No single book detail API by ID
-- No environment variable support yet
-- Database URI is hardcoded
-- No custom global error-handling middleware
-- `npm test` is not implemented
+* Add PUT (update) API
+* Add DELETE API
+* Add GET by ID
+* Use `.env` for config
+* Add proper status codes
+* Improve validation
+* Add error handling middleware
+* Add total count in pagination
 
-## Possible Future Improvements
+---
 
-- Add `PUT` route for updating books
-- Add `DELETE` route for removing books
-- Add `GET /book/:id` route
-- Move MongoDB URI to `.env`
-- Add status codes for success and validation errors
-- Add better numeric validation for `price` and `pages`
-- Add try/catch blocks around async routes
-- Add total count in pagination response
-
-## .gitignore
-
-This project currently ignores:
+## 📄 .gitignore
 
 ```text
 node_modules/
 ```
 
-## Author Notes
+---
 
-This is a clean beginner-friendly backend project that demonstrates several important backend concepts in one place:
+## 👨‍💻 Author
 
-- Express routing
-- Middleware usage
-- Validation
-- MongoDB integration
-- Schema design
-- Search
-- Pagination
-- Sorting
+**Sagar Gadige**
 
-It is a good foundation for expanding into a complete CRUD API.
-#   d a t a - t a b l e - p r - n o d e  
- #   d a t a - t a b l e - p r - n o d e  
- #   d a t a - t a b l e - p r - n o d e  
- #   d a t a - t a b l e - p r - n o d e  
- 
+---
+
+⭐ If you like this project, consider giving it a star on GitHub!
